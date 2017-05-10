@@ -25,8 +25,12 @@
                     $.ajax({
                         url: 'https://api.darksky.net/forecast/bfd3a552cc1f7a5abd4ba6484a531d1b/45.286961,27.975215?units=auto',
                         type: 'GET',
-                        dataType: 'json',
-                        success: function() { alert('PUT completed'); }
+                        dataType: 'jsonp',
+                        crossDomain: true,
+                        success: function(data) {
+                            var forecast = data;
+                            alert('current temperature is: ' + forecast.currently.apparentTemperature);
+                        }
                     });
                 } catch (ex) {
                     console.log(ex);
@@ -43,6 +47,7 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
